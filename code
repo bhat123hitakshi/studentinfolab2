@@ -32,6 +32,21 @@ length(student_info$final_result)
 # Calculate accuracy
 accuracy <- mean(predicted_classes == student_info$final_result)
 print(paste("Accuracy:", accuracy))
+# Load the required library
+library(ggplot2)
+
+# Create a dataframe for plotting
+plot_data <- data.frame(
+  Metric = c("Accuracy"),
+  Value = c(accuracy)
+)
+
+# Create the bar plot
+ggplot(plot_data, aes(x = Metric, y = Value, fill = Metric)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = round(Value, 2)), vjust = -0.3, size = 3.5) +  # Add text labels
+  labs(title = "Model Accuracy", y = "Accuracy", x = NULL) +  # Set plot labels
+  theme_minimal()  # Set plot theme
 
 
 
